@@ -15,12 +15,6 @@ ask() {
     read
 }
 
-ask_for_confirmation() {
-    print_question "$1 (y/n) "
-    read -n 1
-    printf "\n"
-}
-
 ask_for_sudo() {
 
     # Ask for the administrator password upfront
@@ -144,15 +138,9 @@ main() {
 
         if [ -e "$targetFile" ]; then
             if [ "$(readlink "$targetFile")" != "$sourceFile" ]; then
-
-                ask_for_confirmation "'$targetFile' already exists, do you want to overwrite it?"
-                if answer_is_yes; then
-                    rm -rf "$targetFile"
-                    execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
-                else
-                    print_error "$targetFile → $sourceFile"
-                fi
-
+                # Be mean! This script assumes that I want my dotfiles FOR SURE
+                rm -rf "$targetFile"
+                execute "ln -fs $sourceFile $targetFile" "$targetFile → $sourceFile"
             else
                 print_success "$targetFile → $sourceFile"
             fi
