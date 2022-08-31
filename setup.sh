@@ -151,7 +151,7 @@ main() {
     done
 
     # Delete any broken symlinks after things are run
-    find -L . -type l -maxdepth 1 | xargs rm
+    # find -L . -type l -maxdepth 1 | xargs rm
 }
 
 main
