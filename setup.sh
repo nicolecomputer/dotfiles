@@ -153,7 +153,8 @@ installPackages() {
     if [ "$(uname)" == "Darwin" ]; then
         brew list exa | brew install exa
     elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-        apt-get -y install --no-install-recommends exa
+        sudo apt-get update
+        sudo apt-get -y install --no-install-recommends exa
     fi
 }
 
