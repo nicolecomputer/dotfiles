@@ -3,11 +3,10 @@
 # this symlinks all the dotfiles to ~/
 # This is an extension of Paul Irish's scripts but with some of my own features
 
-
 answer_is_yes() {
-    [[ "$REPLY" =~ ^[Yy]$ ]] \
-        && return 0 \
-        || return 1
+    [[ "$REPLY" =~ ^[Yy]$ ]] &&
+        return 0 ||
+        return 1
 }
 
 ask() {
@@ -26,18 +25,18 @@ ask_for_sudo() {
         sudo -n true
         sleep 60
         kill -0 "$$" || exit
-    done &> /dev/null &
+    done &>/dev/null &
 
 }
 
 cmd_exists() {
-    [ -x "$(command -v "$1")" ] \
-        && printf 0 \
-        || printf 1
+    [ -x "$(command -v "$1")" ] &&
+        printf 0 ||
+        printf 1
 }
 
 execute() {
-    $1 &> /dev/null
+    $1 &>/dev/null
     print_result $? "${2:-$1}"
 }
 
@@ -61,9 +60,12 @@ get_os() {
 }
 
 is_git_repository() {
-    [ "$(git rev-parse &>/dev/null; printf $?)" -eq 0 ] \
-        && return 0 \
-        || return 1
+    [ "$(
+        git rev-parse &>/dev/null
+        printf $?
+    )" -eq 0 ] &&
+        return 0 ||
+        return 1
 }
 
 mkd() {
@@ -96,12 +98,12 @@ print_question() {
 }
 
 print_result() {
-    [ $1 -eq 0 ] \
-        && print_success "$2" \
-        || print_error "$2"
+    [ $1 -eq 0 ] &&
+        print_success "$2" ||
+        print_error "$2"
 
-    [ "$3" == "true" ] && [ $1 -ne 0 ] \
-        && exit
+    [ "$3" == "true" ] && [ $1 -ne 0 ] &&
+        exit
 }
 
 print_success() {
@@ -109,24 +111,17 @@ print_success() {
     printf "\e[0;32m  [✔] $1\e[0m\n"
 }
 
-
-
-
-
-
 #
 # actual symlink stuff
 #
-
 
 # finds all .dotfiles in this folder
 declare -a FILES_TO_SYMLINK=$(find . -type f -maxdepth 1 -name ".*" -not -name .DS_Store -not -name .git -not -name .macos | sed -e 's|//|/|' | sed -e 's|./.|.|' | sort)
 FILES_TO_SYMLINK="$FILES_TO_SYMLINK" # add in vim and the binaries
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-main() {
+linkDotfiles() {
     local i=""
     local sourceFile=""
     local targetFile=""
@@ -152,6 +147,19 @@ main() {
 
     # Delete any broken symlinks after things are run
     # find -L . -type l -maxdepth 1 | xargs rm
+}
+
+installPackages() {
+    if [ "$(uname)" == "Darwin" ]; then
+        brew list exa | brew install exa
+    elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+        apt-get -y install --no-install-recommends exa
+    fi
+}
+
+main() {
+    linkDotfiles
+    installPackages
 }
 
 main
