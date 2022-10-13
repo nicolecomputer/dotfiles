@@ -22,3 +22,6 @@ test -e "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" && sou
 test -e "/opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh" && source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+
+# Tab completions for things like man and kill
+autoload compinit && compinit
