@@ -5,6 +5,18 @@ alias tree="eza -T"
 alias ls="eza --icons"
 alias lg="lazygit"
 
+# Use bat as cat replacement
+if command -v batcat >/dev/null 2>&1; then
+    alias cat="batcat"
+    alias bat="batcat"
+    # Set bat as the default pager for man pages
+    export MANPAGER="sh -c 'col -bx | batcat -l man -p'"
+elif command -v bat >/dev/null 2>&1; then
+    alias cat="bat"
+    # Set bat as the default pager for man pages
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
 
 # Add consistent clipboard aliases
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
