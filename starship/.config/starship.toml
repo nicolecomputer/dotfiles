@@ -16,11 +16,13 @@ $git_branch\
 $git_state\
 $git_status\
 $line_break\
-$python\
 $character"""
 
 [directory]
 style = "yellow"
+
+[container]
+disabled = true
 
 [character]
 success_symbol = "[❯](purple)"
@@ -46,8 +48,3 @@ stashed = "≡"
 format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "red"
 
-[python]
-format = "[$virtualenv]($style) "
-style = "bright-black"
-detect_extensions = []
-detect_files = []
