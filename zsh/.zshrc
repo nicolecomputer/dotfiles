@@ -9,4 +9,9 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     alias pbpaste='xclip -selection clipboard -o'
 fi
 
+# Initialize atuin for better shell history
+if command -v atuin >/dev/null 2>&1; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
 eval "$(starship init zsh)"

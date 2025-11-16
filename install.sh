@@ -40,6 +40,7 @@ cd ~/dotfiles
 stow zsh
 stow git
 stow starship
+stow atuin
 
 
 echo "Done! Restart your shell."
