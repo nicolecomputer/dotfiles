@@ -27,4 +27,9 @@ if command -v atuin >/dev/null 2>&1; then
     eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
+# Initialize zoxide for smart directory jumping
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init zsh --cmd j)"
+fi
+
 eval "$(starship init zsh)"
