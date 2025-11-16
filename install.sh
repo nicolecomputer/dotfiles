@@ -41,6 +41,7 @@ stow zsh
 stow git
 stow starship
 stow atuin
+stow lazygit
 
 
 echo "Done! Restart your shell."
