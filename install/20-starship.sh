@@ -20,9 +20,10 @@ install_tool() {
 
             # If that fails, download binary from GitHub
             echo "starship not in repos, downloading binary..."
-            mkdir -p ~/.local/bin
-            export BIN_DIR="~/.local/bin"
-            export PLATFORM="unknown-linux"
+            mkdir -p $HOME/.local/bin
+	    chmod 777 $HOME/.local/bin
+            export BIN_DIR="$HOME/.local/bin"
+	    export PLATFORM="unknown-linux-gnu"
             curl -sS https://starship.rs/install.sh | sh
             ;;
         fedora)
