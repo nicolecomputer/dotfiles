@@ -1,0 +1,10 @@
+[user]
+name = Nicole
+email = 76132106+nicolecomputer@users.noreply.github.com
+
+[alias]
+co = checkout
+recent = !git for-each-ref --count=35 --sort=-committerdate refs/heads/ --format='%(refname:short)!%(authorname)!%(committerdate:short)' | rs -zc! 35 3
+
+[init]
+	defaultBranch = main
