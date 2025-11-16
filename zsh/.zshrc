@@ -2,6 +2,9 @@
 export PATH="$HOME/.local/bin:$PATH"
 
 alias tree="eza -T"
+alias ls="eza --icons"
+alias lg="lazygit"
+
 
 # Add consistent clipboard aliases
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
