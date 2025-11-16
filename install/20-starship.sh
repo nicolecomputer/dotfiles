@@ -22,8 +22,8 @@ install_tool() {
             echo "starship not in repos, downloading binary..."
             mkdir -p ~/.local/bin
             export BIN_DIR="~/.local/bin"
-            export PLATFORM="unknown-linux-msl"
-            curl -sS https://starship.rs/install.sh | sh -s -- -y
+            export PLATFORM="unknown-linux"
+            curl -sS https://starship.rs/install.sh | sh
             ;;
         fedora)
             sudo dnf install -y starship
