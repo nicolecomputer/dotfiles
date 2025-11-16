@@ -1,3 +1,6 @@
+# Make sure local bin is in PATH
+export PATH="$HOME/.local/bin:$PATH"
+
 alias tree="eza -T"
 
 # Add consistent clipboard aliases

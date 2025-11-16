@@ -13,7 +13,14 @@ install_tool() {
             brew install starship
             ;;
         debian)
-            sudo apt install -y starship
+            # Try apt first
+            if sudo apt install -y starship 2>/dev/null; then
+                return 0
+            fi
+
+            # If that fails, download binary from GitHub
+            echo "starship not in repos, downloading binary..."
+            curl -sS https://starship.rs/install.sh | sh -s -- -y
             ;;
         fedora)
             sudo dnf install -y starship
