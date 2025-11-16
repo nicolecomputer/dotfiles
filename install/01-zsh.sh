@@ -26,8 +26,15 @@ install_tool() {
     # Set zsh as default shell if it isn't already
     if [ "$SHELL" != "$(which zsh)" ]; then
         echo "Setting zsh as default shell..."
-        chsh -s "$(which zsh)"
-        echo "Note: You'll need to log out and back in for shell change to take effect"
+        if chsh -s "$(which zsh)" 2>/dev/null; then
+            echo "Note: You'll need to log out and back in for shell change to take effect"
+        else
+            echo "chsh failed (common on ChromeOS). Adding zsh exec to shell profile instead..."
+            # Add to .bashrc to auto-start zsh
+            if ! grep -q "exec zsh" "$HOME/.bashrc"; then
+                echo 'exec zsh' >> "$HOME/.bashrc"
+            fi
+        fi
     fi
 }
 
