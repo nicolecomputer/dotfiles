@@ -22,7 +22,7 @@ install_tool() {
             echo "starship not in repos, downloading binary..."
             mkdir -p ~/.local/bin
             export BIN_DIR="~/.local/bin"
-            export PLATFORM="unknown-msl"
+            export PLATFORM="unknown-linux-msl"
             curl -sS https://starship.rs/install.sh | sh -s -- -y
             ;;
         fedora)
