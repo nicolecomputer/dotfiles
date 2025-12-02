@@ -1,8 +1,14 @@
 # Make sure local bin is in PATH
 export PATH="$HOME/.local/bin:$PATH"
 
-alias tree="eza -T"
-alias ls="eza --icons"
+if command -v eza >/dev/null 2>&1; then
+    alias tree="eza -T"
+    alias ls="eza --icons"
+elif command -v lsd >/dev/null 2>&1; then
+    alias tree="lsd --tree"
+    alias ls="lsd"
+fi
+
 alias lg="lazygit"
 
 # Use bat as cat replacement

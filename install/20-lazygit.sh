@@ -16,6 +16,7 @@ install_tool() {
             sudo apt install -y lazygit
             ;;
         fedora)
+            return 0
             sudo dnf install -y lazygit
             ;;
         *)

@@ -27,7 +27,7 @@ install_tool() {
             sudo apt install -y eza
             ;;
         fedora)
-            sudo dnf install -y eza
+            sudo dnf install -y lsd
             ;;
         *)
             echo "eza: unsupported platform $PLATFORM"

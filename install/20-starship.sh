@@ -27,6 +27,7 @@ install_tool() {
             curl -sS https://starship.rs/install.sh | sh
             ;;
         fedora)
+            sudo dnf copr enable atim/starship -y
             sudo dnf install -y starship
             ;;
         *)
